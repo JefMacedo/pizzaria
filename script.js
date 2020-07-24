@@ -84,7 +84,7 @@ cs('.pizzaInfo--size').forEach((size, sizeIndex) => {
 c('.pizzaInfo--addButton').addEventListener('click', () => {
     let size = parseInt(c('.pizzaInfo--size.selected').getAttribute('data-key'));
     let identifier = pizzaJson[modalKey].id + '@' + size;
-    let key = cart.findIndex((item) => item.identifier == identifier);
+    let key = cart.findIndex((item) => item.identifier === identifier);
 
     if (key > -1) {
         cart[key].qt += modalQt;
@@ -103,12 +103,20 @@ c('.pizzaInfo--addButton').addEventListener('click', () => {
 function updateCart() {
     if (cart.length > 0) {
         c('aside').classList.add('show');
-        for (let i in cart) {
-            let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id);
-            let cartItem = c('.models .cart--item').cloneNode(true);
+        c('.cart').innerHTML = '';
 
-            c('.cart'), append(cartItem);
+        for (let i in cart) {
+            let pizzaItem = pizzaJson.find((item) => item.id === cart[i].id);
+            let cartItem = c('.models .cart--item').cloneNode(true);
+            let pizzaSizes = { 0: 'P', 1: 'M', 2: 'G' };
+
+            cartItem.querySelector('img').src = pizzaItem.img;
+            cartItem.querySelector('.cart--item-nome').innerHTML = `${pizzaItem.name} (${pizzaSizes[cart[i].size]})`;
+
+
+            c('.cart').append(cartItem);
         }
+
     } else {
         c('aside').classList.remove('show');
     }
