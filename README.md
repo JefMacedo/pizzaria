@@ -1,3 +1,6 @@
-Repositório destinado a um sistema de pedir pizza desenvolvido em javaScript.
+# Pizzaria Pizza
+
+### Repositório destinado a um sistema de pedir pizza desenvolvido em javaScript.
+
 
 Somente com intuito de desenvolver!!
